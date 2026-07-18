@@ -6,6 +6,8 @@ import os
 repo_id = "SubashChandraNaik/Tourism-Project-v1"
 repo_type = "dataset"
 
+data_path = "Tourism-Project-v1/data"
+
 hf_token = os.getenv('HF_TOKEN', '').strip()
 if not hf_token:
     raise ValueError("HF_TOKEN is not set or is empty")
@@ -21,7 +23,6 @@ except RepositoryNotFoundError:
     create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
     print(f"Space '{repo_id}' created.")
 
-data_path = "Tourism-Project-v1/data"
 # Validate directory exists
 if not os.path.isdir(data_path):
     raise FileNotFoundError(f"Data directory not found: {data_path}")
