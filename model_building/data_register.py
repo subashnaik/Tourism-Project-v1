@@ -6,11 +6,10 @@ import os
 repo_id = "SubashChandraNaik/Tourism-Project-v1"
 repo_type = "dataset"
 
-data_path = "Tourism-Project-v1/data"
-
 hf_token = os.getenv('HF_TOKEN', '').strip()
 if not hf_token:
     raise ValueError("HF_TOKEN is not set or is empty")
+    
 # Initialize API client( this is the token generated in HF is stort as HF_TOKEN in google colab)
 api = HfApi(token=hf_token)
 
@@ -23,10 +22,6 @@ except RepositoryNotFoundError:
     create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
     print(f"Space '{repo_id}' created.")
 
-# Validate directory exists
-if not os.path.isdir(data_path):
-    raise FileNotFoundError(f"Data directory not found: {data_path}")
-    
 api.upload_folder(
     folder_path="Tourism-Project-v1/data",
     repo_id=repo_id,
