@@ -27,7 +27,7 @@ if not os.path.isdir(data_path):
     raise FileNotFoundError(f"Data directory not found: {data_path}")
     
 api.upload_folder(
-    folder_path="Tourism-Project/data",
+    folder_path="Tourism-Project-v1/data",
     repo_id=repo_id,
     repo_type=repo_type
 )
