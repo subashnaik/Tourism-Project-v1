@@ -1,5 +1,5 @@
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
-from huggingface_hub import HfApi, create_repo
+from huggingface_hub import HfApi, create_repo, upload_folder
 import os
 
 # HF repo details , repo_id is the repo space created in Hugging Face
@@ -21,8 +21,12 @@ except RepositoryNotFoundError:
     create_repo(repo_id=repo_id, repo_type=repo_type, private=False)
     print(f"Space '{repo_id}' created.")
 
+# Validate directory exists
+if not os.path.isdir(data_path):
+    raise FileNotFoundError(f"Data directory not found: {data_path}")
+    
 api.upload_folder(
     folder_path="Tourism-Project/data",
     repo_id=repo_id,
-    repo_type=repo_type,
+    repo_type=repo_type
 )
