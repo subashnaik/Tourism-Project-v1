@@ -13,6 +13,14 @@ if not hf_token:
 # Initialize API client( this is the token generated in HF is stort as HF_TOKEN in google colab)
 api = HfApi(token=hf_token)
 
+# Get the project root directory
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+data_path = os.path.join(project_root, 'data')
+
+# Verify the data directory exists
+if not os.path.isdir(data_path):
+    raise FileNotFoundError(f"Data directory not found at: {data_path}")
+
 # Step 1: Check if the space exists
 try:
     api.repo_info(repo_id=repo_id, repo_type=repo_type)
@@ -23,7 +31,7 @@ except RepositoryNotFoundError:
     print(f"Space '{repo_id}' created.")
 
 api.upload_folder(
-    folder_path="data",
+    folder_path=data_path,
     repo_id=repo_id,
     repo_type=repo_type
 )
