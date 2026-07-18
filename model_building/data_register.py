@@ -6,8 +6,11 @@ import os
 repo_id = "SubashChandraNaik/Tourism-Project-v1"
 repo_type = "dataset"
 
+hf_token = os.getenv('HF_TOKEN', '').strip()
+if not hf_token:
+    raise ValueError("HF_TOKEN is not set or is empty")
 # Initialize API client( this is the token generated in HF is stort as HF_TOKEN in google colab)
-api = HfApi(token=os.getenv("HF_TOKEN"))
+api = HfApi(token=hf_token)
 
 # Step 1: Check if the space exists
 try:
