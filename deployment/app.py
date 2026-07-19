@@ -9,7 +9,7 @@ model_path = hf_hub_download(
     filename="best-Tourism-model-v1.joblib"
 )
 
-# Load the trained model
+# Loading the trained model
 model = joblib.load(model_path)
 
 # Streamlit UI
@@ -18,10 +18,10 @@ st.write(
     "This internal application predicts whether a customer is likely to "
     "purchase a travel package based on demographic and interaction details."
 )
-st.write("Please enter the customer details below.")
+st.write("Please enter the customer details.")
 
 # -----------------------------
-## Customer Details ##
+## Customer Details Option are give as per the (Data discription) ##
 # -----------------------------
 Age = st.number_input("Age", min_value=18, max_value=100, value=30)
 
